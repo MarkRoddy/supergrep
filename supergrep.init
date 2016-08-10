@@ -15,7 +15,7 @@ fi
 # source options file
 if [ -f /etc/default/supergrep ]; then
     . /etc/default/supergrep
-end
+fi
 
 OPTIONS="${OPTIONS:-/path/to/supergrep/stream.js prodConfig.js}"
 RETVAL=0
