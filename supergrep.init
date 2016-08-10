@@ -8,12 +8,19 @@
 # pidfile: /var/run/stream.pid
 
 # source function library
-. /etc/init.d/functions
+if [ -f /etc/init.d/functions ]; then
+    . /etc/init.d/functions
+fi
 
-OPTIONS="/path/to/supergrep/stream.js prodConfig.js"
+# source options file
+if [ -f /etc/default/supergrep ]; then
+    . /etc/default/supergrep
+end
+
+OPTIONS="${OPTIONS:-/path/to/supergrep/stream.js prodConfig.js}"
 RETVAL=0
 prog="node stream.js prodConfig.js"
-pidfile="/var/run/stream.pid"
+pidfile="${pidfile:-/var/run/stream.pid}"
 
 start() {
         echo -n $"Starting $prog: "
